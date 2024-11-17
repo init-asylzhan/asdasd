@@ -47,4 +47,9 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Logged out']);
     }
+
+    public function profile(Request $request)
+    {
+        return response()->json(auth()->guard('sanctum')->user()->load(['position','projects'])->loadCount('projects'));
+    }
 }
