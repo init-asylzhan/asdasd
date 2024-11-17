@@ -19,7 +19,11 @@ Route::prefix('v1')->group(function () {
 
 
     Route::get('/projects', function () {
-        return App\Models\Project::all();
+        return App\Models\Project::with(['tasks','users','manager'])->get();
+    });
+
+    Route::get('/projects/{project:id}/tasks', function (App\Models\Project $project) {
+        return $project->tasks->load('assignedTo');
     });
 
     Route::get('/team', function () {
