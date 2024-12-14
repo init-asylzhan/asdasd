@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('avatar')->nullable();
             $table->string('password');
             $table->string('gender')->default('male');
+            $table->boolean('is_admin')->default(false);
             $table->foreignId('position_id')->nullable()->constrained('positions');
             $table->text('address')->nullable();
             $table->rememberToken();
